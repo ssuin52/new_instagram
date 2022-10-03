@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=0, maximum-scale=0, user-scalable=0" />
+    <meta charset="UTF-8">
+    
+
+    <title>{% block title %}{% endblock %} | insta 클론코딩</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/2b11437a31.js" crossorigin="anonymous"></script>
+    
+    
+    <style>
+        .title-center {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .wrap {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-area {
+            margin-top: 25px;
+        }
+
+        .timeline-container {
+            margin-top: 25px
+        }
+
+        .main_body {
+            display: flex;
+            justify-content: center;
+            padding-top: 75px;
+            background-color: white;
+            
+            position: sticky;
+        }
+
+        .icons a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .left_body {
+            margin-top: -40px;
+            margin-right: 310px;
+            width: auto;
+            height: 2000px;
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+        .right_body {
+            padding-top: -60px;
+            max-width: 300px;
+            width: 80%;
+            height: 900px;
+            right: 29%;
+            position: absolute;
+            overflow: hidden;
+        }
+       
+        .feed_box {
+            margin-top: 20px;
+            background-color: white;
+            max-width: 390px;
+            width: 95%;
+            margin-right: 40px;
+            min-height: auto;
+            padding-bottom: 10px;
+            
+        }
+
+        .feed_img {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .feed_content {
+            padding: 10px;
+        }
+
+
+        .feed_like {
+            padding: 0px 10px;
+        }
+
+        .feed_reply {
+            padding: 0px 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .feed_txt {
+            font-size: 13px;
+        }
+
+        .feed_icon {
+            padding: 5px 5px 0px 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        span {
+            padding-right: 5px;
+        }
+
+
+        .feed_name {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .feed_name_txt {
+            font-size: 14px;
+            padding: 0px 10px;
+            font-weight: bold;
+        }
+        .feed_name_txtt {
+            font-size: 13px;
+            padding: 0px 10px;
+            font-weight: bold;
+            margin-left: -10px;
+            margin-bottom: 7px;
+        }
+        
+        .profile_box {
+            width: 40px;
+            height: 40px;
+            border-radius: 70%;
+            overflow: hidden;
+        }
+
+        .profile_img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profileimage {
+            width: 70%;
+            height: 70%;
+            object-fit: cover;
+            border-radius: 70%;
+            margin-left: 10px;
+            margin-top: 6px;
+        }
+
+
+        .name_content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .name_content_txt {
+            font-size: 12px;
+            padding: 0px 10px;
+            font-weight: bold;
+            color: lightgray;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 190px;
+        }
+
+        .big_profile_box {
+            width: 60px;
+            height: 60px;
+            border-radius: 70%;
+            overflow: hidden;
+        }
+
+        .link_txt {
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .recommend_box {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            align-items: center;
+        }
+
+        .comment_box {
+            margin: 40px 0 0 5px;
+            font-size: 12px;
+            font-weight: bold;
+            color: lightgray;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .postadd_body {
+            padding-top: 50px;
+            height: 800px;
+            display: flex;
+        }
+
+        .modal_window {
+            background: white;
+            backdrop-filter: blur(13.5px);
+            -webkit-backdrop-filter: blur(13.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(87, 87, 87, 0.18);
+            width: 800px;
+            height: 600px;
+            position: relative;
+            margin: auto;
+
+        }
+
+        .modal_title {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+        }
+
+        .modal_title_side {
+            margin: 5px;
+            flex: 0 0 40px;
+            text-align: center;
+        }
+
+        .modal_image_upload {
+            outline: 2px dashed black;
+            outline-offset: -10px;
+            transition: all .15s ease-in-out;
+            width: 798px;
+            height: 548px;
+            text-align: center;
+            line-height: 548px;
+        }
+
+        .modal_image_upload_content {
+            outline: 2px dashed black;
+            outline-offset: -10px;
+            text-align: center;
+            transition: all .15s ease-in-out;
+            width: 500px;
+            height: 548px;
+        }
+
+        .modal_image_content {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .modal_content_write {
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid rgba(0, 0, 0, 0.18);
+            ;
+        }
+
+        .feed_content_textarea {
+            resize: none;
+            width: 294px;
+            height: 400px;
+            border: none;
+        }
+
+        .bi-box-arrow-right {
+            font-size: 22px;
+            line-height: 22px;
+            color: rgba(0, 0, 0, 0.719);
+        }
+       
+
+        <!-- 네비바 -->
+        .navbar{
+            background-color:white !important;
+            border: solid 1px gray;
+        }
+        .navbar-brand {
+            padding-left: 200px;
+        }
+
+        .navbar-nav {
+            padding-right: 90px;
+            width: 500px;
+            margin-left: -10px;
+        }
+        
+        .material-icons {
+            margin-left: -13px;
+            margin-right: -18px;
+        }
+
+        .input-group-text {
+            background-color: white;
+            
+        }
+        .blank {
+            height: 20px;
+        }
+        .container1 {
+            height: 55px;
+        }
+        
+    </style>
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-expand-lg navbar-light bg-light">
+        <div class="container", style="width: 1700px">
+            <a class="navbar-brand" href="/">
+                <img style="height: 30px; object-fit: contain"
+                    src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png">
+            </a>
+
+            <form class="form-inline my-2 my-lg-0">
+                {% if not user.is_authenticated %}
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/sign-in"> Sign In <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/sign-up"> Sign Up <span class="sr-only"></span></a>
+                    </li>
+                </ul>
+                {% else %}
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/profile">{{ user.username }}</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/tweet">
+                    <li class="material-icons">home</li></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a id="add_feed" class="nav-link" href="/post-add">
+                    <li class="material-icons-outlined">add_box</li></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/logout"><i class="bi-box-arrow-right"></i></a>
+                    </li>
+                </ul>
+                {% endif %}
+            </form>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    {% block postadd %}
+    {% endblock postadd %}
+</body>
+
+</html>

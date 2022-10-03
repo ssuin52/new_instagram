@@ -1,0 +1,39 @@
+<!-- templates/user/user_list.html -->
+{% extends 'base.html' %}
+{% block title %}
+    사용자 리스트
+{% endblock %}
+
+{% block content %}
+<div role="alert" style="text-align:center; height:50px; margin-top: 20px;">
+    팔로워 : {{ user.followee.count }} 명 / 팔로잉 : {{ user.follow.count }} 명
+</div>
+<div>
+    {% for ul in user_list %}
+    <div class="feed_name" style="justify-content: space-between">
+        <div style="display: flex; justify-content: center; margin: 0px auto 0px auto;">
+            <div class="profile_box">
+                <img class="profile_img"
+                    src="https://product.cdn.cevaws.com/var/storage/images/_aliases/reference/media/feliway-2017/images/kor-kr/1_gnetb-7sfmbx49emluey4a/6341829-1-kor-KR/1_gNETb-7SfMBX49EMLUeY4A.jpg">
+            </div>
+            <div class="name_content" style="display: flex; justify-content: center;">
+                <span class="feed_name_txt"> {{ ul.username }} </span>
+                <span class="name_content_txt"> {{ user.first_name }} </span>
+            </div>
+            <p class="feed_name_txt" >
+                팔로워 팔로잉<br>&nbsp;&nbsp;&nbsp;&nbsp;{{ ul.followee.count }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ ul.follow.count }}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div style="margin: 0px 0px 0px 200px;">
+                {% if ul in user.follow.all %}
+                <a href="/user/follow/{{ ul.id }}" class="card-link" style="text-decoration: none; color: inherit;">
+                    <button type="button" class="btn btn-light">팔로잉</button></a>
+                {% else %}
+                <a href="/user/follow/{{ ul.id }}" class="card-link" style="text-decoration: none;">
+                    <button type="button" class="btn btn-primary">팔로우</button></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
