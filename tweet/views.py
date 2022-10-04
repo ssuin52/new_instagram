@@ -22,7 +22,8 @@ def tweet (request):
         if user:
             all_tweet = TweetModel.objects.all().order_by('-created_at')
             all_comment = TweetComment.objects.all().order_by('-created_at')
-            return render(request, 'tweet/home.html',{'tweet':all_tweet ,'comment':all_comment})
+            all_image = TweetComment.objects.all().order_by('-created_at')
+            return render(request, 'tweet/home.html',{'tweet':all_tweet ,'comment':all_comment, 'image':all_image})
         else:
             return redirect('/sign-in')
         
