@@ -80,3 +80,6 @@ def user_follow(request, id):
 # @login_required
 def profile(request):
     return render(request, 'user/profile.html')
+
+def change_profile(request):
+    return render(request, 'user/change_profile.html') 
