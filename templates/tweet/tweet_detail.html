@@ -134,7 +134,11 @@
     <div class="detail_left_body">
         <div class="border detail_feed_box">
             <div class="detail_feed_box_left">
+                {% if tweet.image %}
                 <img class="detail_feed_img " src="{{ tweet.image.url }}">
+                {% else %}
+                <img class="detail_feed_img " src="https://blog.kakaocdn.net/dn/cEftca/btqAgU7ckZC/2JaB2RLUkvskP7TqowbTLk/img.png">
+                {% endif %}
             </div>
         </div>
     </div>
@@ -144,10 +148,13 @@
             <div class="detail_feed_name" style="justify-content: space-between">
                 <div style="display: flex; align-items: center; ">
                     <div class="detail_profile_box">
-                        
+                        {% if user.image %}
+                        <img class="detail_profile_img" src="{{ user.image.url }}">
+                        {% else %}
                         <img class="detail_profile_img"
-                            src="https://product.cdn.cevaws.com/var/storage/images/_aliases/reference/media/feliway-2017/images/kor-kr/1_gnetb-7sfmbx49emluey4a/6341829-1-kor-KR/1_gNETb-7SfMBX49EMLUeY4A.jpg">
-                    </div>
+                            src="https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-%EB%82%A8%EC%84%B1%EC%9D%84%EC%9C%84%ED%95%9C-%EA%B8%B0%EB%B3%B8-%EC%95%84%EB%B0%94%ED%83%80-%ED%94%84%EB%A1%9C%ED%95%84-%EC%95%84%EC%9D%B4%EC%BD%98-%ED%9A%8C%EC%83%89-%EC%82%AC%EC%A7%84-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C-%EC%9E%90-%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8-%EB%B2%A1%ED%84%B0.jpg?ver=6">
+                        {% endif %}
+                        </div>
                     <div class="detail_name_content">
                         <span class="detail_feed_name_txt">{{ tweet.author.username }}</span>
                     </div>
@@ -165,9 +172,13 @@
                 <div class="detail_feed_name">
                     <div style="display: flex; align-items: center; ">
                         <div class="detail_profile_box">
+                            {% if user.image %}
+                            <img class="detail_profile_img" src="{{ user.image.url }}">
+                            {% else %}
                             <img class="detail_profile_img"
-                                src="https://product.cdn.cevaws.com/var/storage/images/_aliases/reference/media/feliway-2017/images/kor-kr/1_gnetb-7sfmbx49emluey4a/6341829-1-kor-KR/1_gNETb-7SfMBX49EMLUeY4A.jpg">
-                        </div>
+                                src="https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-%EB%82%A8%EC%84%B1%EC%9D%84%EC%9C%84%ED%95%9C-%EA%B8%B0%EB%B3%B8-%EC%95%84%EB%B0%94%ED%83%80-%ED%94%84%EB%A1%9C%ED%95%84-%EC%95%84%EC%9D%B4%EC%BD%98-%ED%9A%8C%EC%83%89-%EC%82%AC%EC%A7%84-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C-%EC%9E%90-%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8-%EB%B2%A1%ED%84%B0.jpg?ver=6">
+                            {% endif %}
+                            </div>
                         <div class="detail_name_content">
                             <span class="detail_feed_name_txt">{{ tweet.author.username }}</span>
                         </div>
@@ -201,8 +212,12 @@
                                 <div class="media-body">
                                     <div style="display: flex; align-items: center; ">
                                         <div class="detail_profile_box">
+                                            {% if user.image %}
+                                            <img class="detail_profile_img" src="{{ user.image.url }}">
+                                            {% else %}
                                             <img class="detail_profile_img"
-                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHPNYM5RQgA2F7BtpBQ-OrNFKDXVDUpypRuw&usqp=CAU">
+                                                src="https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-%EB%82%A8%EC%84%B1%EC%9D%84%EC%9C%84%ED%95%9C-%EA%B8%B0%EB%B3%B8-%EC%95%84%EB%B0%94%ED%83%80-%ED%94%84%EB%A1%9C%ED%95%84-%EC%95%84%EC%9D%B4%EC%BD%98-%ED%9A%8C%EC%83%89-%EC%82%AC%EC%A7%84-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C-%EC%9E%90-%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8-%EB%B2%A1%ED%84%B0.jpg?ver=6">
+                                            {% endif %}
                                         </div>
                                         <h5 class="detail_feed_name_txt">{{ cm.author }}</h5>
                                         <h5 class="comment_txt">{{ cm.comment }}</h5>

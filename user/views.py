@@ -65,6 +65,8 @@ def user_view(request):
         # 사용자를 불러오기, exclude와 request.user.username 를 사용해서 '로그인 한 사용자'를 제외하기
         user_list = UserModel.objects.all().exclude(username=request.user.username)
         return render(request, 'user/user_list.html', {'user_list': user_list})
+    else:
+        return render(request, 'user/user_list.html')
 
 
 @login_required
@@ -82,7 +84,18 @@ def profile(request):
     return render(request, 'user/profile.html')
 
 def change_profile(request):
-    return render(request, 'user/change_profile.html') 
+    if request.method == 'POST':
+        user_image = request.user
+        print(user_image)
+        print(request.FILES)
+        user_image.image = request.FILES.get('image','')
+        user_image.save()
+
+        return render(request, 'user/change_profile.html')
+            
+    elif request.method == 'GET':
+        user_image = UserModel()
+        return render(request, 'user/change_profile.html',{'image':user_image})
 
 def profile_change(request):
     if request.method == 'GET':
@@ -98,3 +111,4 @@ def profile_change(request):
         # email = request.POST.get('email','')
         # phone = request.POST.get('phone','')
         # gender = request.POST.get('gender','')
+        
