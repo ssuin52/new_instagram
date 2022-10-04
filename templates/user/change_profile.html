@@ -57,7 +57,7 @@
         <div class="change_title">
             <div class="change_title_side"></div>
             <div style="margin: 5px"> 프로필 변경 </div>
-            <a href="/">
+            <a href="/profile">
                 <div class="change_title_side">
                     <span id="close_modal" class="close_modal material-icons-outlined" style="font-size: 30px">
                         close
@@ -65,17 +65,17 @@
                 </div>
             </a>
         </div>
-        <form action="/user/" method="post" enctype="multipart/form-data">
+        <form action="/change_profile/" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="change_image_upload">
                 <div class="change_image_upload_content">
                     <input id="image"  type="file" name="image" style="margin:200px 0px 200px 150px;"multiple>      
                 </div>
             </div>
-            <div style="width: 100%; text-align: center;">
-                <button id="button_write_feed" type="submit" class="btn btn-primary" style="width: 100px; margin-top:10px;">
+               <div style="width: 100%; text-align: center;">
+                <button onClick="location.href='profile.html'" id="button_write_feed" type="submit" class="btn btn-primary" style="width: 100px; margin-top:10px;" >
                     변경하기</button>
-            </div>
+                </div> 
         </form>
     </div>
 </div>
