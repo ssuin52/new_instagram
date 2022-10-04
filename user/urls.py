@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('sign-up/', views.sign_up_view, name='sign-up'),
@@ -10,3 +12,4 @@ urlpatterns = [
     path('user/follow/<int:id>', views.user_follow, name='user-follow'),
     path('change_profile/', views.change_profile),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
