@@ -3,7 +3,7 @@ from urllib import request
 from django.shortcuts import render, redirect
 from .models import TweetModel
 from .models  import TweetComment
-from .models import UserModel
+from user.models import UserModel
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, TemplateView
 import random
@@ -25,7 +25,8 @@ def tweet (request):
             all_tweet = TweetModel.objects.all().order_by('-created_at')
             all_comment = TweetComment.objects.all().order_by('-created_at')
             all_image = TweetComment.objects.all().order_by('-created_at')
-            return render(request, 'tweet/home.html',{'tweet':all_tweet ,'comment':all_comment, 'image':all_image})
+            recommend_list = UserModel.objects.all().exclude(username=request.user.username).order_by('id')[:5]
+            return render(request, 'tweet/home.html',{'tweet':all_tweet ,'comment':all_comment, 'image':all_image, 'recommend_list': recommend_list})
         else:
             return redirect('/sign-in')
         
@@ -104,10 +105,19 @@ def post_add(request):
 def post_edit(request):
     return render(request, 'tweet/post-edit.html')
 
-def recommend(request):
-    recommend_list = UserModel.objects.all()
-    # recommend_list = UserModel.objects.all().exclude(username=request.user.username)
-    # random_user = random.choice(recommend_list)
-    context={"recommend_list":recommend_list}
-    return render(request,'home.html',context)
-    # return random_user
+@login_required
+def recommend_view(request):
+    if request.method == 'GET':
+        # 사용자를 불러오기, exclude와 request.user.username 를 사용해서 '로그인 한 사용자'를 제외하기
+        recommend_list = UserModel.objects.all().exclude(username=request.user.username)
+        return render(request, 'tweet/home.html', {'recommend_list': recommend_list})
+    
+@login_required
+def user_follow(request, id):
+    me = request.user
+    click_user = UserModel.objects.get(id=id)
+    if me in click_user.followee.all():
+        click_user.followee.remove(request.user)
+    else:
+        click_user.followee.add(request.user)
+    return redirect('/tweet')
