@@ -13,7 +13,7 @@ class TweetModel(models.Model):
     tags = TaggableManager(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+    profile = models.ImageField(upload_to = "profile/")
     image = models.ImageField(upload_to = "images/")
     
     
@@ -25,6 +25,7 @@ class TweetComment(models.Model):
     comment = models.CharField(max_length=256)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
     
     
 

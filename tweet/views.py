@@ -25,8 +25,9 @@ def tweet (request):
             all_tweet = TweetModel.objects.all().order_by('-created_at')
             all_comment = TweetComment.objects.all().order_by('-created_at')
             all_image = TweetComment.objects.all().order_by('-created_at')
+            profile_image = TweetModel.objects.all()
             recommend_list = UserModel.objects.all().exclude(username=request.user.username).order_by('id')[:5]
-            return render(request, 'tweet/home.html',{'tweet':all_tweet ,'comment':all_comment, 'image':all_image, 'recommend_list': recommend_list})
+            return render(request, 'tweet/home.html',{'tweet':all_tweet ,'comment':all_comment, 'image':all_image, 'recommend_list': recommend_list, 'profile_image' : profile_image})
         else:
             return redirect('/sign-in')
         
@@ -34,14 +35,14 @@ def tweet (request):
         user = request.user
         content = request.POST.get('my-content')
         tags = request.POST.get('tag','').split(',')
-        
+        profile_image = request.FILES.get('profile_image', '')
         image = request.FILES.get('image', '')
         
         if content == '':
             all_tweet = TweetModel.objects.all().order_by('-created_at')
             return render(request,'tweet/home.html',{'error':'글은 공백일 수 없습니다.','tweet':all_tweet})
         else:
-            my_tweet = TweetModel.objects.create(author=user, content=content, image=image)
+            my_tweet = TweetModel.objects.create(author=user, content=content, image=image, profile=profile_image)
             for tag in tags:
                 tag = tag.strip()
                 if tag != '':
