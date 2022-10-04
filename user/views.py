@@ -91,7 +91,7 @@ def change_profile(request):
         user_image.image = request.FILES.get('image','')
         user_image.save()
 
-        return render(request, 'user/change_profile.html')
+        return render(request, 'user/profile.html')
             
     elif request.method == 'GET':
         user_image = UserModel()
