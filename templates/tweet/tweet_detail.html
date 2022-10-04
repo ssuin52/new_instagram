@@ -7,21 +7,21 @@
     .detail_main_body {
         display: flex;
         justify-content: center;
-        background-color: #FAFAFA;
+        background-color: white;
         margin-top: 30px;
     }
     .detail_left_body {
         padding-top: 20px;
-        width: 700px;
+        width: 500px;
         height: 2000px;
         display: flex;
         flex-direction: column;
     }
     .detail_right_body {
         padding-top: 20px;
-        width: 350px;
+        width: 400px;
         height: 100%;
-        margin-right: 200px;
+        margin-right: 50px;
         left: 72%;
     }
     .feed_detail {
@@ -33,13 +33,16 @@
     }
     .detail_feed_box_left {
         width: 700px;
+
+        background-color: black;
+
         margin: 20px 0px 20px 0px;
         height: 480px;
         padding: 10px 0px 20px 0px;
     }
     .detail_feed_box_right {
         background-color: white;
-        width: 600px;
+        width: 400px;
         padding-top: 10px;
         height: 500px;
     }
@@ -91,7 +94,7 @@
         object-fit: cover;
     }
     .detail_name_content {
-        width: 500px;
+        width: 270px;
         display: flex;
         flex-direction: column;
     }
@@ -118,7 +121,8 @@
     }
     .comment_txt {
         font-size: 13px;
-        margin-right: 50px;
+        margin-right: 30px;
+        width: 180px;
     }
     .imoticon {
         width:100%;
@@ -126,6 +130,9 @@
     .badge {
         margin-right: 10px;
         margin-bottom: 10px;
+    }
+    .tweet_delete_button {
+        margin-right: 300px;
     }
 </style>
 <div class="detail_main_body">
@@ -159,12 +166,33 @@
                     </div>
                     {% if tweet.author == user %}
                     <div style="float: right">
-                        <a href="/tweet/delete/{{ tweet.id }}">
-                            <span class="badge bg-danger">삭제</span>
-                        </a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button> 
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">삭제</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">정말 삭제하시겠습니까?</div>
+                                    <div class="modal-footer">                            
+                                        <button type="button" class="btn btn-outline-primary btn-sm">
+                                            <a href="/tweet/delete/{{ tweet.id }}">Delete</a>
+                                        </button>
+                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                     {% endif %}
+                    
                 </div>
             </div>
             <div class="feed_detail">
@@ -184,7 +212,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="detail_feed_content">
+                    <div class="detail_feed_content" style="">
                         <p class="detail_feed_txt">{{ tweet.content }}</p>
                         {% if tw.tags.all %}
                         {% for tag in tw.tags.all %}
@@ -220,20 +248,42 @@
                                         </div>
                                         <h5 class="detail_feed_name_txt">{{ cm.author }}</h5>
                                         <h5 class="comment_txt">{{ cm.comment }}</h5>
+                                        {% if tweet.author == user %}
+                                        <div style="float: right">
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </button> 
+                                            
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">댓글 삭제</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">댓글을 정말 삭제하시겠습니까?</div>
+                                                        <div class="modal-footer">                            
+                                                            <button type="button" class="btn btn-outline-primary btn-sm">
+                                                                <a href="/tweet/comment/delete/{{ cm.id }}">Delete</a>
+                                                            </button>
+                                                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endif %}
                                     </div>
+                                    <div>
                                     <span class="detail_feed_txt" style="margin-left:45px;">{{ cm.created_at | timesince }} 전</span>
-                                    {% if cm.author == user %}
-                                    <div style="float: right">
-                                        <a href="/tweet/comment/delete/{{ cm.id }}">
-                                            <span class="badge bg-danger">삭제</span>
-                                        </a>
+                                    
                                     </div>
-                                    {% endif %}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {% endfor %}
+                        {% endfor %}
                 </p>
             </div>
             <div class="comment_box">
