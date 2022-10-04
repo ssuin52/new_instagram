@@ -3,8 +3,10 @@ from urllib import request
 from django.shortcuts import render, redirect
 from .models import TweetModel
 from .models  import TweetComment
+from .models import UserModel
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, TemplateView
+import random
 
 # Create your views here.
 
@@ -100,3 +102,11 @@ def post_add(request):
 
 def post_edit(request):
     return render(request, 'tweet/post-edit.html')
+
+def recommend(request):
+    recommend_list = UserModel.objects.all()
+    # recommend_list = UserModel.objects.all().exclude(username=request.user.username)
+    # random_user = random.choice(recommend_list)
+    context={"recommend_list":recommend_list}
+    return render(request,'home.html',context)
+    # return random_user

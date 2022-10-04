@@ -29,21 +29,66 @@
                 </span>
                 {% endif %}
             </div>
-            <div>
+
+
+            <!-- <div>
+                {% for ul in user_list %}
                 <div class="feed_name" style="justify-content: space-between">
-                    <div class="profile_box">
-                        <img class="profile_img"
-                            src="https://i.pinimg.com/736x/93/a6/8b/93a68b57a54e4bdc73d43d1d049b94b3.jpg">
+                    <div style="display: flex; justify-content: center; margin: 0px auto 0px auto;">
+                        <div class="profile_box">
+                            <img class="profile_img"
+                                src="https://product.cdn.cevaws.com/var/storage/images/_aliases/reference/media/feliway-2017/images/kor-kr/1_gnetb-7sfmbx49emluey4a/6341829-1-kor-KR/1_gNETb-7SfMBX49EMLUeY4A.jpg">
+                        </div>
+                        <div class="name_content" style="display: flex; justify-content: center;">
+                            <span class="feed_name_txt"> {{ ul.username }} </span>
+                            <span class="name_content_txt"> {{ ul.first_name }} </span>
+                        </div>
+                        <p class="feed_name_txt" >
+                            팔로워 팔로잉<br>{{ ul.followee.count }} {{ ul.follow.count }}
+                            
+                        <div style="margin: 0px 0px 0px 200px;">
+                            {% if ul in user.follow.all %}
+                            <a href="/user/follow/{{ ul.id }}" class="card-link" style="text-decoration: none; color: inherit;">
+                                <button type="button" class="btn btn-light">팔로잉</button></a>
+                            {% else %}
+                            <a href="/user/follow/{{ ul.id }}" class="card-link" style="text-decoration: none;">
+                                <button type="button" class="btn btn-primary">팔로우</button></a>
+                            {% endif %}
+                        </div>
                     </div>
-                    <div class="name_content">
-                        <span class="feed_name_txt"> dation3388 </span>
-                        <span class="name_content_txt"> Instargram 신규가입</span>
-                    </div>
-                    <a class="link_txt">
-                        팔로우
-                    </a>
                 </div>
+                {% endfor %}
+            </div> -->
+
+
+
+            <div>
+                
+                {% for ul in user_list %}
                 <div class="feed_name" style="justify-content: space-between">
+                    <div style="display: flex; justify-content: center; margin: 0px auto 0px auto;">
+                        <div class="profile_box">
+                            <img class="profile_img"
+                                src="https://product.cdn.cevaws.com/var/storage/images/_aliases/reference/media/feliway-2017/images/kor-kr/1_gnetb-7sfmbx49emluey4a/6341829-1-kor-KR/1_gNETb-7SfMBX49EMLUeY4A.jpg">
+                        </div>
+                        <div class="name_content" style="display: flex; justify-content: center; margin-bottom:20px;">
+                            <span class="feed_name_txt"> {{ ul.username }} </span>
+                            <span class="name_content_txt"> {{ ul.first_name }} </span>
+                        </div>
+                        <div style="margin: 0px 0px 0px 200px;">
+                            {% if ul in user.follow.all %}
+                            <a href="/user/follow/{{ ul.id }}" class="card-link" style="text-decoration: none; color: inherit;">
+                                <button type="button" class="btn btn-light">팔로잉</button></a>
+                            {% else %}
+                            <a href="/user/follow/{{ ul.id }}" class="card-link" style="text-decoration: none;">
+                                <button type="button" class="btn btn-primary">팔로우</button></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <!-- <div class="feed_name" style="justify-content: space-between">
                     <div class="profile_box">
                         <img class="profile_img"
                             src="http://file3.instiz.net/data/cached_img/upload/2021/01/27/18/2ce2f41f7e9f09c0acc77faac7452dbf.jpg">
@@ -93,7 +138,7 @@
                     <a class="link_txt">
                         팔로우
                     </a>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -112,9 +157,10 @@
                             <div class="big_profile_box">
                                 <img class="profileimage"
                                     src="https://product.cdn.cevaws.com/var/storage/images/_aliases/reference/media/feliway-2017/images/kor-kr/1_gnetb-7sfmbx49emluey4a/6341829-1-kor-KR/1_gNETb-7SfMBX49EMLUeY4A.jpg">
+                                    
                             </div>
                             <div class="name_content">
-                                <span class="feed_name_txtt"> {{ user.username }} </span>
+                                <span class="feed_name_txtt">{{ user.username }} </span>
                                 
                             </div>
                         </div>
@@ -179,8 +225,7 @@
                         {% endfor %}
                     </div>
                     
-                    <div class="blank">
-                    </div>
+                    <div class="blank"></div>
                     <div class="input-group">
                         <div class="input-group-text" id="btnGroupAddon2">😃</div>
                         <input type="text" class="form-control" placeholder="댓글 달기.." aria-label="Input group example" aria-describedby="btnGroupAddon2">
@@ -193,35 +238,6 @@
         </div>
     
 </div>
-
-<!-- 
-{% for cm in comment %}
-<div class="row">
-    <div class="col-md-12">
-        <div class="media">
-            <div class="media-body">
-                <div style="display: flex; align-items: center; ">
-                    <div class="detail_profile_box">
-                        <img class="detail_profile_img"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHPNYM5RQgA2F7BtpBQ-OrNFKDXVDUpypRuw&usqp=CAU">
-                    </div>
-                    <h5 class="detail_feed_name_txt">{{ cm.author }}</h5>
-                    <h5 class="comment_txt">{{ cm.comment }}</h5>
-                </div>
-                <span class="detail_feed_txt"> - {{ cm.created_at | timesince }}</span>
-                {% if cm.author == user %}
-                <div style="float: right">
-                    <a href="/tweet/comment/delete/{{ cm.id }}">
-                        <span class="badge bg-danger">삭제</span>
-                    </a>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
-<hr>
-{% endfor %} -->
 
 {% endblock %}
 
