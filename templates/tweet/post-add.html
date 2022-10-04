@@ -19,9 +19,12 @@
             {% csrf_token %}
             <div class="modal_image_content">
                 <div class="modal_image_upload_content">
-                
-                <input class="modal_image_upload_content" id="image"  type="file" name="image" multiple>
-                
+                    <div class="image_content">
+                        <div class="image_upload_content">
+                            <input id="image" type="file" name="image" multiple>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal_content_write">
                     <div class="feed_name">
@@ -33,7 +36,7 @@
                     </div>
                     {% if error %}
                     <div class="alert alert-danger" role="alert">
-                    {{ error }}
+                        {{ error }}
                     </div>
                     {% endif %}
                     <div style="height: 380px">
