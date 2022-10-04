@@ -186,8 +186,8 @@
                         -<a style="text-decoration: none" href="{% url 'tag_cloud' %}">TagCloud</a>
                         {% endif %}
                     </div>
-                    <div style=padding:10px;>
-                        <span style="font-size: small">{{tweet.created_at|timesince }}</span>
+                    <div style="margin-left:10px;">
+                        <span style="font-size: small">{{tweet.created_at|timesince }} 전</span>
                     </div>
                 </div>
             </div>
@@ -206,7 +206,7 @@
                                         <h5 class="detail_feed_name_txt">{{ cm.author }}</h5>
                                         <h5 class="comment_txt">{{ cm.comment }}</h5>
                                     </div>
-                                    <span class="detail_feed_txt"> - {{ cm.created_at | timesince }}</span>
+                                    <span class="detail_feed_txt" style="margin-left:45px;">{{ cm.created_at | timesince }} 전</span>
                                     {% if cm.author == user %}
                                     <div style="float: right">
                                         <a href="/tweet/comment/delete/{{ cm.id }}">
