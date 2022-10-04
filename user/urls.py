@@ -8,4 +8,5 @@ urlpatterns = [
     path('user/', views.user_view, name='user-list'),
     path('profile/', views.profile, name='profile'),
     path('user/follow/<int:id>', views.user_follow, name='user-follow'),
+    path('change_profile/', views.change_profile),
 ]

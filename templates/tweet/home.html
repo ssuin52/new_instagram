@@ -155,12 +155,14 @@
                     <a class="navbar-brand1" href="/" style="text-decoration: none; color: inherit;">    
                         <div style="display: flex; align-items: center; ">
                             <div class="big_profile_box">
-                                <img class="profileimage"
-                                    src="https://product.cdn.cevaws.com/var/storage/images/_aliases/reference/media/feliway-2017/images/kor-kr/1_gnetb-7sfmbx49emluey4a/6341829-1-kor-KR/1_gNETb-7SfMBX49EMLUeY4A.jpg">
-                                    
+                                <!-- <a href="/tweet/{{ tw.id }}">
+                                    <img class="profileimage " src="{{ tw.image.url }}">
+                                </a> -->
+                                <!-- <img class="profileimage"
+                                    src="https://product.cdn.cevaws.com/var/storage/images/_aliases/reference/media/feliway-2017/images/kor-kr/1_gnetb-7sfmbx49emluey4a/6341829-1-kor-KR/1_gNETb-7SfMBX49EMLUeY4A.jpg"> -->
                             </div>
                             <div class="name_content">
-                                <span class="feed_name_txtt">{{ user.username }} </span>
+                                <span class="feed_name_txtt">{{ tw.author }} </span>
                                 
                             </div>
                         </div>
@@ -195,7 +197,7 @@
                     <p class="feed_txt"> <b>좋아요 10개</b></p>
                 </div>
                 <div class="feed_content">
-                    <p class="feed_txt"> <b> {{ user.username }} </b> {{ tw.content }}
+                    <p class="feed_txt"> <b> {{ tw.author }} </b> {{ tw.content }}
                     <div style="text-align: left">
                         <span style="font-size: small">{{ tw.updated_at|timesince}} 전</span>
                     </div>
