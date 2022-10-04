@@ -83,3 +83,18 @@ def profile(request):
 
 def change_profile(request):
     return render(request, 'user/change_profile.html') 
+
+def profile_change(request):
+    if request.method == 'GET':
+        user = request.user.is_authenticated
+        if user:
+            return redirect('/')
+        else:
+            return render(request, 'user/profile.html')
+    elif request.method == 'POST':
+        username = request.POST.get('username','')
+        first_name = request.POST.get('first_name','')
+        bio = request.bio.POST.get('post','')
+        # email = request.POST.get('email','')
+        # phone = request.POST.get('phone','')
+        # gender = request.POST.get('gender','')
