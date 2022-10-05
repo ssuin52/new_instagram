@@ -86,16 +86,14 @@ def profile(request):
 def change_profile(request):
     if request.method == 'POST':
         user_image = request.user
-        print(user_image)
-        print(request.FILES)
-        user_image.image = request.FILES.get('image','')
+        user_image.profile = request.FILES.get('profile','')
         user_image.save()
 
         return render(request, 'user/profile.html')
             
     elif request.method == 'GET':
         user_image = UserModel()
-        return render(request, 'user/change_profile.html',{'image':user_image})
+        return render(request, 'user/change_profile.html',{'profile':user_image})
 
 def profile_change(request):
     if request.method == 'GET':
