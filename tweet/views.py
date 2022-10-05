@@ -122,3 +122,4 @@ def user_follow(request, id):
     else:
         click_user.followee.add(request.user)
     return redirect('/tweet')
+
