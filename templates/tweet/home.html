@@ -23,8 +23,8 @@ Home
                             </a>
                         </div>
                         <div class="name_content">
-                            <span class="feed_name_txtt">{{ tw.author }} </span>
-                            <a href="/post-edit"><i class="bi bi-pencil-square"></i></a>
+                            <p class="feed_name_txtt">{{ tw.author }} <a href="/post-edit" class="fs-5" style="margin-left:260px;"><i class="bi bi-pencil"></i></a></p>
+                            
                         </div>
                     </div>
                 </a>
@@ -59,7 +59,7 @@ Home
                 <p class="feed_txt"> <b>좋아요 10개</b></p>
             </div>
             <div class="feed_content">
-                <p class="feed_txt"> <b> {{ tw.author }} </b> {{ tw.content }}
+                <p class="feed_txt" > <b> {{ tw.author }} </b> {{ tw.content }}
                 <div style="text-align: left">
                     <span style="font-size: small">{{ tw.updated_at|timesince }} 전</span>
                 </div>
