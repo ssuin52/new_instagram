@@ -16,7 +16,7 @@ urlpatterns = [
     path('post-add/', views.post_add),
     path('post-edit/', views.post_edit),
     path('tweet/recommend/', views.recommend_view, name='recommend-view'),
-    path('tweet/home/<int:id>', views.user_follow, name='user-follow'),
+    path('tweet/home/<int:id>', views.user_follow, name='user-follow'),    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

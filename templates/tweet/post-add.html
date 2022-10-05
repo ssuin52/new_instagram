@@ -40,12 +40,12 @@ Post Add
                         </div>
                         <span id="input_user_id" class="feed_name_txt"> {{ user.username }} </span>
                     </div>
-                    {% if error %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ error }}
-                    </div>
-                    {% endif %}
                     <div style="height: 380px">
+                        {% if error %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                        {% endif %}
                         <textarea id="my-content" class="feed_content_textarea form-control col-sm-4" rows="10"
                             name='my-content' placeholder="내용을 입력하세요..."></textarea>
                     </div>
