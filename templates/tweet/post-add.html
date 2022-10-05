@@ -41,11 +41,6 @@ Post Add
                         <span id="input_user_id" class="feed_name_txt"> {{ user.username }} </span>
                     </div>
                     <div style="height: 380px">
-                        {% if error %}
-                        <p class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </p>
-                        {% endif %}
                         <textarea id="my-content" class="feed_content_textarea form-control col-sm-4" rows="10"
                             name='my-content' placeholder="내용을 입력하세요..."></textarea>
                     </div>
@@ -54,6 +49,11 @@ Post Add
                             <input type="text" class="form-control" name="tag" id="tag" placeholder="#" style="margin-left:7%;" >
                         </div>
                     </div>
+                    {% if error %}
+                    <p class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                    {% endif %}
                     <div style="width: 100%; text-align: center;">
                         <a class="nav-link" href="/home">
                             <button id="button_write_feed" type="submit" class="btn btn-primary" style="width: 268px">
