@@ -1,5 +1,6 @@
 from re import T
 from urllib import request
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import TweetModel
 from .models  import TweetComment
@@ -59,14 +60,17 @@ def write_comment(request, id):
     if request.method == 'POST':
         comment = request.POST.get("comment","")
         current_tweet = TweetModel.objects.get(id=id)
+        tweet_id = request.POST.get("tweet_id", None)
 
         TC = TweetComment()
         TC.comment = comment
         TC.author = request.user
         TC.tweet = current_tweet
+        TC.tweet_id = id
         TC.save()
 
-        return redirect('/tweet/'+str(id))
+        print('hello')
+        return HttpResponse({'message' : 'success'})
     
 @login_required
 def delete_comment(request, id):

@@ -78,12 +78,13 @@ Home
                     <span class="feed_txt"> <b> {{ cm.author }} </b> {{ cm.comment }}</span>
                     {% endfor %}
                 </div>
-                <div class="blank"></div>
-                <div class="input-group">
-                    <div class="input-group-text" id="btnGroupAddon2">😃</div>
-                    <input type="text" class="form-control" placeholder="댓글 달기.." aria-label="Input group example"
-                        aria-describedby="btnGroupAddon2">
-                </div>
+                <div class="blank"></div>               
+                <form class="input-group mb-3" action="/tweet/{{ tw.id }}" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" id='comment' name='comment'
+                        placeholder="댓글을 남겨주세요" />
+                    <button class="btn btn-outline-secondary" type="submit">작성</button>
+                </form>
             </div>
         </div>
         {% endfor %}
