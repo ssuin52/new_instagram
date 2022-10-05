@@ -19,13 +19,13 @@
             <div class="modal_image_content">
                 <div class="modal_image_upload_content">
                     <div class="image_content">
-                        <div class="image_upload_content">
+                        <div class="cor">
                             {% if tweet.image %}
                             <img class="detail_feed_img " src="{{ tweet.image.url }}">
                             {% else %}
                             <img class="detail_feed_img " src="https://blog.kakaocdn.net/dn/cEftca/btqAgU7ckZC/2JaB2RLUkvskP7TqowbTLk/img.png">
                             {% endif %}
-                            <input id="image" type="file" name="image" multiple>
+                            <input id="image" type="file" name="image" multiple style="padding-left:100px;" >
                         </div>
                     </div>
 
