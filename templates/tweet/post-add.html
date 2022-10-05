@@ -30,7 +30,7 @@ Post Add
                 </div>
                 <div class="modal_content_write">
                     <div class="feed_name">
-                        <div class="profile_box">
+                        <div class="big_profile_box" style="margin: 5px 0px 0px 5px;">
                             {% if user.profile %}
                             <img id="input_user_profile" type="file" name="profile" class="profile_img" src="{{ user.profile.url }}">
                             {% else %}
@@ -39,17 +39,17 @@ Post Add
                         </div>
                         <span id="input_user_id" class="feed_name_txt"> {{ user.username }} </span>
                     </div>
-                    <div style="height: 380px">
-                        <textarea id="my-content" class="feed_content_textarea form-control col-sm-4" rows="10"
+                    <div >
+                        <textarea style="height: 330px" id="my-content" class="feed_content_textarea form-control col-sm-4" rows="10"
                             name='my-content' placeholder="내용을 입력하세요..."></textarea>
                     </div>
                     <div class="row">
-                        <div class="col-sm-9" style=" margin-bottom:5%;">
-                            <input type="text" class="form-control" name="tag" id="tag" placeholder="#" style="margin-left:7%;" >
+                        <div class="col-sm-9" style=" margin-top:5%;">
+                            <input type="text" class="form-control" name="tag" id="tag" placeholder="#" style="margin-left:7%; width:270px;" >
                         </div>
                     </div>
                     {% if error %}
-                    <p class="alert alert-danger" role="alert">
+                    <p style="color:red; margin:3% auto 0px auto">
                         {{ error }}
                     </p>
                     {% endif %}
