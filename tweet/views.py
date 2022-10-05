@@ -40,7 +40,7 @@ def tweet (request):
         
         if content == '':
             all_tweet = TweetModel.objects.all().order_by('-created_at')
-            return render(request,'tweet/post-add.html',{'error':'글은 공백일 수 없습니다.','tweet':all_tweet})
+            return render(request,'tweet/home.html',{'error':'글은 공백일 수 없습니다.','tweet':all_tweet})
         else:
             my_tweet = TweetModel.objects.create(author=user, content=content, image=image, profile=profile_image)
             for tag in tags:
