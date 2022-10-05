@@ -105,17 +105,17 @@ def post_add(request):
 @login_required
 def post_edit(request,id):
     my_tweet = TweetModel.objects.get(id=id)
-    
     if request.method == "POST":
         my_tweet.content = request.POST['my-content']
         my_tweet.image = request.FILES['image']
+        
+        if my_tweet.content == '' or my_tweet.image == '':
+            my_tweet = TweetModel.objects.all().order_by('-created_at')
+            
+            return render(request,'tweet/post-edit.html',{'error':'글은 공백일 수 없습니다.','tweet':my_tweet})
+        
         my_tweet.save()
-        
         return redirect('/tweet')
-        
-    # elif my_tweet.content == '':
-    #     all_tweet = TweetModel.objects.all().order_by('-created_at')
-    #     return render(request,'tweet/post-edit.html',{'error':'글은 공백일 수 없습니다.','tweet':all_tweet})
         
     else:
         return render(request,'tweet/post-edit.html',{'tweet':my_tweet})

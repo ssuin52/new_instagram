@@ -22,12 +22,12 @@ def sign_up_view(request):
         if password != password2:
             return render(request, 'user/signup.html',{'error':'패스워드를 확인 해 주세요!'})
         else:
-            if username == '' or password == '':
-                return render(request, 'user/signup.html',{'error':'사용자 이름과 비밀번호는 필수 값 입니다.'})
+            if username == '' or password == '' or first_name == "":
+                return render(request, 'user/signup.html',{'error':'빈칸을 모두 채워주세요!'})
             
             exist_user = get_user_model().objects.filter(username=username)   
             if exist_user:
-                return render(request, 'user/signup.html',{'error':'사용자가 존재합니다.'})
+                return render(request, 'user/signup.html',{'error':'사용자가 존재합니다!'})
             else:
                 UserModel.objects.create_user(username=username, password=password, first_name=first_name)
                 return redirect('/sign-in')
