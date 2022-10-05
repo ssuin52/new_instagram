@@ -60,17 +60,14 @@ def write_comment(request, id):
     if request.method == 'POST':
         comment = request.POST.get("comment","")
         current_tweet = TweetModel.objects.get(id=id)
-        tweet_id = request.POST.get("tweet_id", None)
 
         TC = TweetComment()
         TC.comment = comment
         TC.author = request.user
         TC.tweet = current_tweet
-        TC.tweet_id = id
         TC.save()
 
-        print('hello')
-        return HttpResponse({'message' : 'success'})
+        return redirect('/tweet/'+str(id))
     
 @login_required
 def delete_comment(request, id):
