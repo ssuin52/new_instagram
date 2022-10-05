@@ -1,6 +1,6 @@
 from re import T
 from urllib import request
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import TweetModel
 from .models  import TweetComment
 from user.models import UserModel
@@ -45,7 +45,6 @@ def tweet (request):
                 if tag != '':
                     my_tweet.tags.add(tag)
             my_tweet.save()
-            # my_profile.save()
             return redirect('/tweet')
 
 @login_required
@@ -98,11 +97,32 @@ class TaggedObjectLV(ListView):
         context['tagname'] = self.kwargs['tag']
         return context
     
+@login_required    
 def post_add(request):
     return render(request, 'tweet/post-add.html') 
 
-def post_edit(request):
-    return render(request, 'tweet/post-edit.html')
+@login_required
+def post_edit(request,id):
+    my_tweet = TweetModel.objects.get(id=id)
+    
+    if request.method == "POST":
+        user = request.user
+        content = request.POST.get('my-content')
+        tags = request.POST.get('tag','').split(',')
+        image = request.FILES.get('image', '')
+        if content == '':
+            all_tweet = TweetModel.objects.all().order_by('-created_at')
+            return render(request,'tweet/post-edit.html',{'error':'글은 공백일 수 없습니다.','tweet':all_tweet})
+        else:
+            my_tweet = TweetModel.objects.create(author=user, content=content, image=image)
+            for tag in tags:
+                tag = tag.strip()
+                if tag != '':
+                    my_tweet.tags.add(tag)
+            my_tweet.save()
+            return redirect('/tweet')
+    else:
+        return render(request,'tweet/post-edit.html',{'tweet':my_tweet})
 
 @login_required
 def recommend_view(request):
@@ -120,4 +140,3 @@ def user_follow(request, id):
     else:
         click_user.followee.add(request.user)
     return redirect('/tweet')
-

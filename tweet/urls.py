@@ -14,7 +14,7 @@ urlpatterns = [
     path('tag/', views.TagCloudTV.as_view(), name='tag_cloud'),
     path('tag/<str:tag>/', views.TaggedObjectLV.as_view(), name='tagged_object_list'),
     path('post-add/', views.post_add),
-    path('post-edit/', views.post_edit),
+    path('post-edit/<int:id>', views.post_edit, name='post-edit'),
     path('tweet/recommend/', views.recommend_view, name='recommend-view'),
     path('tweet/home/<int:id>', views.user_follow, name='user-follow'),    
 ]
