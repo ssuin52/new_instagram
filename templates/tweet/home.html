@@ -92,7 +92,7 @@ Home
                     {% endfor %}
                 </div>
                 <div class="blank"></div>               
-                <form class="input-group mb-3" action="/tweet/{{ tw.id }}" method="post">
+                <form class="input-group mb-3" action="/tweet/home/comment/{{ tw.id }}" method="post">
                     {% csrf_token %}
                     <input type="text" class="form-control" id='comment' name='comment'
                         placeholder="댓글을 남겨주세요" />
